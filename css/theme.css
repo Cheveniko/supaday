@@ -800,3 +800,16 @@ body:not(.dark) .reveal .closing .qr img {
 .reveal .photo-slide .bleed img.crop-dev {
   object-position: 50% 20%;
 }
+
+/* Link al repo, abajo a la izquierda de la portada */
+.reveal .cover .repo {
+  position: absolute;
+  bottom: 56px;
+  left: 72px;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.36em;
+  letter-spacing: 0.03em;
+  color: var(--muted-foreground);
+  z-index: 2;
+}
