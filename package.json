@@ -1,0 +1,22 @@
+{
+  "name": "supaday-talk",
+  "version": "1.0.0",
+  "description": "Charla Supabase Conf — slides en reveal.js",
+  "scripts": {
+    "start": "http-server . -p 8000 -c-1 -o",
+    "dev": "http-server . -p 8000 -c-1 -o"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@fontsource-variable/space-grotesk": "^5.3.0",
+    "@fontsource/space-mono": "^5.3.0",
+    "reveal.js": "^6.0.2"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "private": true
+}

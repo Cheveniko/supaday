@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Supabase detrás de 300K tickets</title>
+
+    <link
+      rel="stylesheet"
+      href="node_modules/@fontsource-variable/space-grotesk/index.css"
+    />
+    <link rel="stylesheet" href="node_modules/@fontsource/space-mono/400.css" />
+    <link rel="stylesheet" href="node_modules/@fontsource/space-mono/700.css" />
+
+    <link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css" />
+    <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css" />
+    <link
+      rel="stylesheet"
+      href="node_modules/reveal.js/dist/plugin/highlight/monokai.css"
+    />
+    <link rel="stylesheet" href="css/theme.css" />
+  </head>
+
+  <body class="dark">
+    <div class="reveal">
+      <div class="slides">
+        <!-- Portada -->
+        <section class="cover">
+          <div class="header">
+            <img class="mark" src="assets/logomark.svg" alt="" />
+            <p class="event">
+              Supaday Quito &middot; Supabase &times; SpaceXAI
+            </p>
+          </div>
+
+          <div class="stack">
+            <h1>Supabase<br />detrás de<br />300K tickets</h1>
+            <p class="byline">
+              Nicolás Baquero
+              <span>visitawiwa.com</span>
+            </p>
+          </div>
+
+          <div class="photo">
+            <img src="assets/pfp2026.jpg" alt="Nicolás Baquero" />
+          </div>
+
+          <aside class="notes">
+            <ul>
+              <li>Saludo</li>
+              <li>
+                La charla está dividida en dos: producto/negocio y técnica
+              </li>
+              <li>
+                Preguntar a los asistentes su nivel técnico (a mano alzada)
+              </li>
+              <li>Preguntar si han visitado wiwa</li>
+              <li>Preguntar si han visitado wiwa</li>
+            </ul>
+          </aside>
+        </section>
+        <!-- 2. Qué es Wiwa -->
+        <section class="photo-slide">
+          <div class="bleed">
+            <img src="assets/leona.jpg" alt="Leona en el parque refugio Wiwa" />
+          </div>
+
+          <img class="brand-mark" src="assets/logomark.svg" alt="" />
+
+          <div class="caption">
+            <h2>Wiwa Quito</h2>
+            <p class="lead">
+              El primer parque refugio de animales silvestres del Ecuador
+            </p>
+            <p class="stat">
+              <span class="num">200K+</span>
+              <span class="label">visitantes al año</span>
+            </p>
+          </div>
+
+          <div class="inset">
+            <img src="assets/rotulo.jpeg" alt="Rótulo de entrada del parque" />
+          </div>
+
+          <aside class="notes">
+            <ul>
+              <li>Antes era el Quito Zoo</li>
+              <li>
+                Wiwa se dedica a la conservación y refugio de animales
+                silvestres.
+              </li>
+              <li>
+                Solo tiene animales que ya no se pueden integrar nuevamente en
+                su hábitat
+              </li>
+              <li>Con 200K+ visitas al año tenían algunos desafíos</li>
+            </ul>
+          </aside>
+        </section>
+        <!-- 3. Los problemas del parque -->
+        <section class="split">
+          <img class="brand-mark" src="assets/logomark.svg" alt="" />
+
+          <div class="col">
+            <h2>Desafíos</h2>
+            <ul class="numbered">
+              <li class="fragment" data-fragment-index="0">
+                <span class="idx">01</span> Fila
+              </li>
+              <li class="fragment" data-fragment-index="1">
+                <span class="idx">02</span> Venta manual lenta
+              </li>
+              <li class="fragment" data-fragment-index="2">
+                <span class="idx">03</span> Facturación manual
+              </li>
+              <li class="fragment" data-fragment-index="3">
+                <span class="idx">04</span> 0 data
+              </li>
+            </ul>
+          </div>
+
+          <!-- la fila entra con el punto 01; el reporte entra encima en el 03 -->
+          <div class="r-stack visual">
+            <img
+              class="fragment fade-in crop-left"
+              data-fragment-index="0"
+              src="assets/fila.jpeg"
+              alt="Fila de visitantes en la entrada del parque"
+            />
+            <img
+              class="fragment fade-in"
+              data-fragment-index="2"
+              src="assets/reporte.jpeg"
+              alt="Reporte de ventas en papel"
+            />
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>
+                Nosotros identificamos los desafíos y planteamos una solución,
+                crear una plataforma que resuelva estos 4 desafíos
+              </li>
+              <li>
+                Nosotros identificamos los desafíos y planteamos una solución,
+                crear una plataforma que resuelva estos 4 puntos
+              </li>
+              <li>Y desde febrero del 2025 logramos esto: [Next slide]</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- 4. Los números -->
+        <section class="stats-slide">
+          <img class="brand-mark" src="assets/logomark.svg" alt="" />
+
+          <div class="col">
+            <p class="kicker">Desde febrero de 2025</p>
+            <div class="stats">
+              <div>
+                <span class="num">93<span class="unit">mil</span></span>
+                <span class="label">Transacciones<br />procesadas</span>
+              </div>
+              <div>
+                <span class="num">336<span class="unit">mil</span></span>
+                <span class="label">Tickets<br />generados</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="notes">
+            <li>No leer cifras</li>
+            <li>Los visitantes no fueron un hito de la plataforma</li>
+            <li>
+              Pero cada visitante nuevo tuvo una mejor experiencia que antes
+            </li>
+            <li>Esto fue lo que logramos, ahora como llegamos a esto?</li>
+          </aside>
+        </section>
+        <!-- 5. Demo -->
+        <section class="section-break has-visual">
+          <img class="brand-mark" src="assets/logomark.svg" alt="" />
+
+          <div class="col">
+            <h2 class="xl">Demo</h2>
+            <p class="sub">visitawiwa.com</p>
+          </div>
+
+          <div class="visual">
+            <img
+              src="assets/kiosco.jpeg"
+              alt="Kiosco de autoservicio en el parque"
+            />
+          </div>
+        </section>
+        <!-- 6. Supabase -->
+        <section class="features">
+          <img class="brand-mark" src="assets/logomark.svg" alt="" />
+
+          <div class="col">
+            <h2>
+              <img
+                class="supabase-mark"
+                src="assets/supabase-logo-icon.svg"
+                alt=""
+              />
+              Supabase
+            </h2>
+
+            <div class="row">
+              <div class="fragment">
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <ellipse cx="12" cy="5" rx="8" ry="3" />
+                  <path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5" />
+                  <path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" />
+                </svg>
+                <span class="name">DB</span>
+              </div>
+              <div class="fragment">
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="4" y="10" width="16" height="11" rx="2" />
+                  <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+                  <path d="M12 14.5v2.5" />
+                </svg>
+                <span class="name">Auth</span>
+              </div>
+              <div class="fragment">
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="4" width="18" height="5" rx="1" />
+                  <path d="M5 9v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9" />
+                  <path d="M10 13h4" />
+                </svg>
+                <span class="name">Storage</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. Separador: downsides -->
+        <section class="section-break">
+          <img class="brand-mark" src="assets/logomark.svg" alt="" />
+          <div class="col">
+            <h2>El downside de Supabase</h2>
+            <pre
+              class="lg"
+            ><code class="language-ts" data-trim data-noescape><script type="text/template">
+// 3 clientes distintos ☠️
+import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@supabase/ssr";
+import { createClient } from "@supabase/server";
+            </script></code></pre>
+          </div>
+        </section>
+
+        <!-- 8. Transacción con un ORM -->
+        <section class="code-slide">
+          <img class="brand-mark" src="assets/logomark.svg" alt="" />
+          <div class="col">
+            <h3>El cliente no hace transacciones</h3>
+            <span class="label">Con un ORM</span>
+            <pre
+              class="lg"
+            ><code class="language-ts" data-trim data-noescape><script type="text/template">
+await db.transaction(async (tx) => {
+  const [order] = await tx.update(orders)
+    .set({ status: 'processed', processedAt: new Date() })
+    .where(eq(orders.id, orderId))
+    .returning()
+
+  const items = await tx.select().from(orderItems)
+    .where(eq(orderItems.orderId, orderId))
+
+  await tx.insert(tickets).values(buildTickets(order, items))
+})
+            </script></code></pre>
+          </div>
+          <aside class="notes">
+            <li>
+              Una transacción es realizar más de una operación en conjunto,
+              donde se ejectuan todas o fallan todas.
+            </li>
+            <li>
+              No quiero que se enfoquen en el código, les voy a explicar que
+              hace
+            </li>
+          </aside>
+        </section>
+
+        <!-- 9. Lo mismo con Supabase -->
+        <section class="code-slide">
+          <img class="brand-mark" src="assets/logomark.svg" alt="" />
+          <div class="col">
+            <h3>El cliente no hace transacciones</h3>
+            <span class="label">Con Supabase</span>
+            <pre
+              class="sm"
+            ><code class="language-sql" data-trim data-noescape><script type="text/template">
+create or replace function process_order_and_create_tickets(
+  current_order_id uuid, method_transaction_id text, order_method_data jsonb
+)
+returns void language plpgsql security definer as $$
+declare
+  current_order orders%rowtype;
+  order_item order_items%rowtype;
+begin
+  update orders
+    set status = 'processed', processed_at = now(),
+        method_reference = method_transaction_id, method_data = order_method_data
+  where id = current_order_id;
+
+  select * into current_order from orders where id = current_order_id;
+
+  for order_item in select * from order_items where order_id = current_order_id loop
+    for i in 1..order_item.quantity loop
+      insert into tickets(profile_id, event_id, section_id, order_id, is_valid)
+      values (current_order.profile_id, current_order.event_id,
+              order_item.section_id, current_order_id, true);
+    end loop;
+  end loop;
+end $$;
+            </script></code></pre>
+          </div>
+          <aside class="notes">
+            Función real de la app. No hace falta que la lean: el punto es
+            cuánto hay que escribir, y que se sale de TypeScript. Los pasos:
+            update de la orden, recuperarla, recorrer los items, crear los
+            tickets.
+          </aside>
+        </section>
+
+        <!-- 10. Y en el cliente queda esto -->
+        <section class="code-slide">
+          <img class="brand-mark" src="assets/logomark.svg" alt="" />
+          <div class="col">
+            <span class="label">Y en el cliente queda</span>
+            <pre
+              class="xl"
+            ><code class="language-ts" data-trim data-noescape><script type="text/template">
+await supabase.rpc('process_order_and_create_tickets', {
+  current_order_id: orderId,
+  method_transaction_id: transactionId,
+  order_method_data: methodData,
+})
+            </script></code></pre>
+          </div>
+          <aside class="notes">
+            Escribiste toda una función en SQL para llamarla en una línea.
+            Cerrar honesto: funciona bien, es fricción, no es un bloqueo.
+          </aside>
+        </section>
+        <!-- Tips -->
+        <section class="tips-slide">
+          <img class="brand-mark" src="assets/logomark.svg" alt="" />
+
+          <div class="col">
+            <h2>Tips</h2>
+            <div class="cards">
+              <div class="card fragment custom dim">
+                <span class="idx">01</span>
+                <h3>Entorno local</h3>
+              </div>
+              <div class="card fragment custom dim">
+                <span class="idx">02</span>
+                <h3>Tipos desde la CLI</h3>
+              </div>
+              <div class="card fragment custom dim">
+                <span class="idx">03</span>
+                <h3>Queries efectivos</h3>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Cómo llegué a Wiwa -->
+        <section class="section-break">
+          <img class="brand-mark" src="assets/logomark.svg" alt="" />
+
+          <div class="col">
+            <h2>¿Cómo llegué<br />a Wiwa?</h2>
+          </div>
+
+          <aside class="notes">
+            <ul>
+              <li>Llegamos por mi socio</li>
+              <li>Pandemia: su esposa ve una noticia — el zoo cerrado por la cuarentena</li>
+              <li>El zoo vive de los visitantes. Cerrado = sin ingresos</li>
+              <li>Nosotros trabajábamos en una empresa de venta de tickets en línea</li>
+              <li>La propuesta: campaña para vender tickets ahora, para usar cuando reabra</li>
+              <li>La gente apoya al zoo y el zoo tiene caja mientras está cerrado</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- Foto: construyendo -->
+        <section class="photo-slide">
+          <!-- ¿más fotos? agrega class="loop" al .bleed y más <img> -->
+          <div class="bleed">
+            <img
+              class="crop-dev"
+              src="assets/dev-1.jpeg"
+              alt="Nicolás presentando la plataforma"
+            />
+          </div>
+
+          <img class="brand-mark" src="assets/logomark.svg" alt="" />
+        </section>
+
+        <!-- Mensaje final -->
+        <section class="section-break">
+          <img class="brand-mark" src="assets/logomark.svg" alt="" />
+
+          <div class="col">
+            <h2 class="big">Just build it</h2>
+          </div>
+        </section>
+
+        <!-- Final. Preguntas -->
+        <section class="closing">
+          <img class="brand-mark" src="assets/logomark.svg" alt="" />
+
+          <div class="col">
+            <h2>Preguntas</h2>
+            <p class="links">
+              <span>baquero.engineering</span>
+              <span>@Cheveniko</span>
+            </p>
+          </div>
+
+          <div class="qr">
+            <img src="assets/qr.png" alt="QR a baquero.engineering" />
+            <span class="qr-label">Conectemos</span>
+          </div>
+
+          <aside class="notes">
+            Poner esta slide ANTES de pedir preguntas.
+            "Mientras piensan algo que preguntar, ahí está el QR."
+          </aside>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="node_modules/reveal.js/dist/reveal.js"></script>
+    <script src="node_modules/reveal.js/dist/plugin/notes.js"></script>
+    <script src="node_modules/reveal.js/dist/plugin/highlight.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        slideNumber: "c/t",
+        width: 1280,
+        height: 720,
+        margin: 0,
+        plugins: [RevealHighlight, RevealNotes],
+      });
+
+      // Backup de emergencia: T alterna claro/oscuro en vivo.
+      // ?light en la URL arranca en claro directamente.
+      if (new URLSearchParams(location.search).has('light')) {
+        document.body.classList.remove('dark');
+      }
+      // Loop de fotos: cruza las imágenes de .bleed.loop cada 3.5s
+      document.querySelectorAll('.bleed.loop').forEach((loop) => {
+        const imgs = [...loop.querySelectorAll('img')];
+        if (!imgs.length) return;
+        imgs[0].classList.add('is-on');
+        if (imgs.length < 2) return;
+        let i = 0;
+        setInterval(() => {
+          imgs[i].classList.remove('is-on');
+          i = (i + 1) % imgs.length;
+          imgs[i].classList.add('is-on');
+        }, 3500);
+      });
+
+      Reveal.addKeyBinding(
+        { keyCode: 84, key: 'T', description: 'Alternar claro / oscuro' },
+        () => document.body.classList.toggle('dark')
+      );
+    </script>
+  </body>
+</html>

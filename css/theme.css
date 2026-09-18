@@ -1,0 +1,802 @@
+/* ---------------------------------------------------------------
+   Tokens de la línea gráfica (codeline/src/routes/layout.css)
+   --------------------------------------------------------------- */
+:root {
+  --background: oklch(0.99 0.005 297.729);
+  --foreground: oklch(0.259 0.026 287.704);
+  --primary: oklch(0.649 0.209 294.245);
+  --muted-foreground: oklch(0.532 0.025 291.265);
+  --accent: oklch(0.926 0.139 114.088);
+  --border: oklch(0.933 0.023 296.72);
+  --radius: 0.625rem;
+
+  --supabase: #3ecf8e;
+
+  --font-display:
+    "Space Grotesk Variable", "Space Mono", ui-monospace, monospace;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+}
+
+/* Quita class="dark" del <body> para volver al esquema claro */
+body.dark {
+  --background: oklch(0.204 0.012 292.958);
+  --foreground: oklch(0.961 0 89.876);
+  --muted-foreground: oklch(0.698 0.028 292.917);
+  --border: oklch(0.317 0.041 293.909);
+}
+
+/* Grilla de fondo con punto en la intersección */
+.reveal-viewport {
+  background-color: var(--background);
+  background-image:
+    radial-gradient(
+      circle at 0 0,
+      color-mix(in oklab, var(--muted-foreground) 50%, transparent) 1.5px,
+      transparent 1.5px
+    ),
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--border) 65%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--border) 65%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 80px 80px;
+}
+
+/* ---------------------------------------------------------------
+   Roles tipográficos
+   Space Grotesk (proporcional) para títulos y texto.
+   Space Mono para números, código y etiquetas.
+   --------------------------------------------------------------- */
+.reveal {
+  font-family: var(--font-display);
+  font-size: 42px; /* base de los em; la traía el theme de reveal */
+  color: var(--foreground);
+  font-weight: 400;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+  font-family: var(--font-display);
+  color: var(--foreground);
+  font-weight: 700;
+  text-transform: none;
+  text-shadow: none;
+}
+
+.reveal .mono,
+.reveal code,
+.reveal pre {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum" 1;
+}
+
+.reveal a {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.reveal a:hover {
+  color: var(--supabase);
+}
+
+.reveal p {
+  line-height: 1.5;
+}
+.reveal .muted {
+  color: var(--muted-foreground);
+}
+.reveal .supa {
+  color: var(--supabase);
+}
+
+.reveal pre {
+  box-shadow: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.5em;
+}
+.reveal pre code {
+  padding: 1em 1.2em;
+  border-radius: var(--radius);
+}
+
+.reveal section img {
+  box-shadow: none;
+  background: none;
+  border: 0;
+  margin: 0;
+}
+
+/* margin:0 en la config => el margen del slide lo pone el CSS */
+.reveal .slides section {
+  padding: 60px 72px;
+}
+
+.reveal .progress {
+  color: var(--supabase);
+  height: 3px;
+}
+.reveal .controls {
+  color: var(--muted-foreground);
+}
+/* abajo a la izquierda para no caer sobre la foto de la portada */
+.reveal .slide-number {
+  left: 8px;
+  right: auto;
+  background: transparent;
+  color: var(--muted-foreground);
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+.reveal .slide-number a {
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------------------
+   Portada
+   Split asimétrico: columna de texto a la izquierda, foto sangrada
+   a la derecha. reveal fuerza display:block en las sections, así que
+   el centrado vertical va con un stack absoluto, no con flex.
+   --------------------------------------------------------------- */
+.reveal .slides section.cover {
+  height: 100%;
+  padding: 0;
+}
+
+/* Cabecera: logomark y nombre del evento sobre la misma línea base */
+.reveal .cover .header {
+  position: absolute;
+  top: 56px;
+  left: 72px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.reveal .cover .header .mark {
+  height: 44px;
+  width: auto;
+}
+.reveal .cover .header .event {
+  font-family: var(--font-mono);
+  font-size: 0.3em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+/* Columna de texto */
+.reveal .cover .stack {
+  position: absolute;
+  top: 50%;
+  left: 72px;
+  width: 600px;
+  transform: translateY(-50%);
+  text-align: left;
+  z-index: 2;
+}
+
+.reveal .cover h1 {
+  font-size: 2.4em;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.reveal .cover .byline {
+  font-family: var(--font-mono);
+  font-size: 0.62em;
+  margin: 1.5rem 0 0;
+}
+.reveal .cover .byline span {
+  display: block;
+  font-size: 0.72em;
+  color: var(--muted-foreground);
+  margin-top: 0.5rem;
+}
+
+/* Panel de foto, sangrado arriba, derecha y abajo */
+.reveal .cover .photo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 44%;
+  overflow: hidden;
+  z-index: 1;
+}
+.reveal .cover .photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 18%;
+}
+
+/* ---------------------------------------------------------------
+   Slides de foto sangrada
+   Reutilizable: imagen a los cuatro bordes, scrim inferior,
+   texto abajo a la izquierda y una foto secundaria como inset.
+   --------------------------------------------------------------- */
+.reveal .slides section.photo-slide {
+  height: 100%;
+  padding: 0;
+}
+
+/* Logomark de esquina, disponible para cualquier slide */
+.reveal .slides section .brand-mark {
+  position: absolute;
+  top: 56px;
+  left: 72px;
+  height: 40px;
+  width: auto;
+  z-index: 3;
+}
+
+.reveal .photo-slide .bleed {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+.reveal .photo-slide .bleed img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 22%;
+  display: block;
+}
+/* scrim: sin esto el texto no se lee sobre la foto */
+.reveal .photo-slide .bleed::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    var(--background) 0%,
+    color-mix(in oklab, var(--background) 88%, transparent) 18%,
+    transparent 62%
+  );
+  pointer-events: none;
+}
+
+.reveal .photo-slide .caption {
+  position: absolute;
+  left: 72px;
+  bottom: 60px;
+  max-width: 620px;
+  text-align: left;
+  z-index: 2;
+}
+.reveal .photo-slide .caption h2 {
+  font-size: 1.5em;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.reveal .photo-slide .caption .lead {
+  font-size: 0.6em;
+  line-height: 1.35;
+  margin: 0.7rem 0 0;
+  max-width: 560px;
+}
+.reveal .photo-slide .caption .stat {
+  font-family: var(--font-mono);
+  margin: 1.5rem 0 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+.reveal .photo-slide .caption .stat .num {
+  font-size: 1.05em;
+  font-weight: 700;
+  line-height: 1;
+}
+.reveal .photo-slide .caption .stat .label {
+  font-size: 0.38em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+/* Foto secundaria: tarjeta abajo a la derecha */
+.reveal .photo-slide .inset {
+  position: absolute;
+  right: 72px;
+  bottom: 60px;
+  width: 320px;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  z-index: 2;
+}
+.reveal .photo-slide .inset img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---------------------------------------------------------------
+   Slides partidas: texto a la izquierda, panel visual sangrado
+   a la derecha. El panel es un r-stack de reveal, así que puede
+   apilar varias imágenes y cruzarlas con fragments.
+   --------------------------------------------------------------- */
+.reveal .slides section.split {
+  height: 100%;
+  padding: 0;
+}
+
+.reveal .split .col {
+  position: absolute;
+  left: 72px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 560px;
+  text-align: left;
+  z-index: 2;
+}
+.reveal .split .col h2 {
+  font-size: 1.5em;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0 0 2.2rem;
+}
+
+.reveal .slides section .visual {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 46%;
+  overflow: hidden;
+  z-index: 1;
+}
+.reveal .slides section .visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+}
+/* la fila y las cajas viven en el tercio izquierdo de la foto */
+.reveal .slides section .visual img.crop-left {
+  object-position: 20% 50%;
+}
+
+/* cruce de imágenes más lento que el default de 0.2s de reveal */
+.reveal .slides section .visual .fragment {
+  transition: opacity 0.5s ease;
+}
+
+/* Lista numerada con el índice en mono */
+.reveal ul.numbered {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.reveal ul.numbered li {
+  display: flex;
+  align-items: baseline;
+  gap: 1.1rem;
+  font-size: 0.72em;
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+}
+.reveal ul.numbered li:last-child {
+  margin-bottom: 0;
+}
+.reveal ul.numbered .idx {
+  font-family: var(--font-mono);
+  font-size: 0.62em;
+  color: var(--muted-foreground);
+  letter-spacing: 0.08em;
+  flex: none;
+}
+
+/* ---------------------------------------------------------------
+   Slide de cifras
+   --------------------------------------------------------------- */
+.reveal .slides section.stats-slide {
+  height: 100%;
+  padding: 0;
+}
+
+.reveal .stats-slide .col {
+  position: absolute;
+  left: 72px;
+  right: 72px;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: left;
+  z-index: 2;
+}
+
+.reveal .kicker {
+  font-family: var(--font-mono);
+  font-size: 0.34em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin: 0 0 3.5rem;
+}
+
+.reveal .stats {
+  display: flex;
+}
+/* mitades iguales: reparten todo el ancho y no dejan hueco a la derecha */
+.reveal .stats > div {
+  flex: 1;
+  text-align: center;
+}
+.reveal .stats .num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 4em;
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+.reveal .stats .unit {
+  font-size: 0.36em;
+  font-weight: 400;
+  color: var(--muted-foreground);
+  letter-spacing: 0;
+  margin-left: 0.3em;
+}
+.reveal .stats .label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.36em;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin-top: 1.4rem;
+}
+
+/* ---------------------------------------------------------------
+   Separadores de sección
+   Reutilizable para DEMO, los downsides, los tips, etc.
+   --------------------------------------------------------------- */
+.reveal .slides section.section-break {
+  height: 100%;
+  padding: 0;
+}
+
+.reveal .section-break .col {
+  position: absolute;
+  left: 72px;
+  right: 72px;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: left;
+  z-index: 2;
+}
+.reveal .section-break h2 {
+  font-size: 2.1em;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+/* para títulos de una sola palabra */
+.reveal .section-break h2.xl {
+  font-size: 4.2em;
+}
+.reveal .section-break.has-visual .col {
+  right: auto;
+  width: 520px;
+}
+.reveal .section-break pre {
+  margin-top: 3.2rem;
+}
+.reveal .section-break .sub {
+  font-family: var(--font-mono);
+  font-size: 0.5em;
+  color: var(--muted-foreground);
+  margin: 1.8rem 0 0;
+}
+
+/* Pie de foto sobre el panel visual */
+.reveal .slides section .visual .tag {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.6rem 1.8rem;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.34em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--foreground);
+  background: linear-gradient(
+    to top,
+    color-mix(in oklab, var(--background) 92%, transparent) 0%,
+    transparent 100%
+  );
+  z-index: 2;
+}
+
+/* ---------------------------------------------------------------
+   Slide de features con íconos
+   --------------------------------------------------------------- */
+.reveal .slides section.features {
+  height: 100%;
+  padding: 0;
+}
+
+.reveal .features .col {
+  position: absolute;
+  left: 72px;
+  right: 72px;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: left;
+  z-index: 2;
+}
+.reveal .features h2 {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 1.6em;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0 0 5rem;
+}
+.reveal .features h2 .supabase-mark {
+  height: 76px;
+  width: auto;
+}
+
+.reveal .features .row {
+  display: flex;
+}
+.reveal .features .row > div {
+  flex: 1;
+  text-align: center;
+}
+.reveal .features .icon {
+  display: block;
+  width: 112px;
+  height: 112px;
+  margin: 0 auto;
+  color: var(--supabase);
+}
+.reveal .features .name {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.42em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 1.8rem;
+}
+
+/* ---------------------------------------------------------------
+   Slides de código
+   --------------------------------------------------------------- */
+.reveal .slides section.code-slide {
+  height: 100%;
+  padding: 0;
+}
+
+.reveal .code-slide .col {
+  position: absolute;
+  left: 72px;
+  right: 72px;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: left;
+  z-index: 2;
+}
+.reveal .code-slide h3 {
+  font-size: 0.82em;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+.reveal .code-slide .label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.3em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin: 1.5rem 0 0.9rem;
+}
+.reveal .code-slide pre {
+  margin: 0;
+  width: 100%;
+}
+.reveal pre.lg { font-size: 0.58em; }
+.reveal pre.sm { font-size: 0.44em; }
+.reveal pre.xl { font-size: 0.6em; }
+
+/* ---------------------------------------------------------------
+   Slide de cierre / preguntas
+   --------------------------------------------------------------- */
+.reveal .slides section.closing {
+  height: 100%;
+  padding: 0;
+}
+
+.reveal .closing .col {
+  position: absolute;
+  left: 72px;
+  width: 560px;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: left;
+  z-index: 2;
+}
+.reveal .closing h2 {
+  font-size: 2.1em;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin: 0 0 2.8rem;
+}
+.reveal .closing .links {
+  font-family: var(--font-mono);
+  font-size: 0.54em;
+  line-height: 1.9;
+  margin: 0;
+}
+.reveal .closing .links span {
+  display: block;
+}
+
+/* El QR conserva su fondo blanco: sin él no escanea */
+.reveal .closing .qr {
+  position: absolute;
+  right: 96px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 360px;
+  text-align: center;
+  z-index: 2;
+}
+.reveal .closing .qr img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+.reveal .closing .qr-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.34em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin-top: 1.5rem;
+}
+
+/* ---------------------------------------------------------------
+   Backup en modo claro
+   Se activa quitando class="dark" del <body>, con la tecla T,
+   o abriendo el deck con ?light en la URL.
+   Tres cosas no sobreviven el cambio automático y se arreglan aquí.
+   --------------------------------------------------------------- */
+
+/* 1. El logomark lima da 1.18:1 sobre fondo claro: invisible.
+      Al ser un color plano, brightness(0) lo pasa a negro sólido. */
+body:not(.dark) .reveal .brand-mark,
+body:not(.dark) .reveal .cover .mark {
+  filter: brightness(0);
+}
+
+/* 2. El verde de Supabase da 1.94:1 sobre claro. Se usa el verde
+      oscuro de su propia paleta para superficies claras. */
+body:not(.dark) {
+  --supabase: #006239;
+}
+
+/* 3. Monokai es un tema de sintaxis oscuro. En vez de cambiarlo,
+      los bloques de código se quedan en superficie oscura. */
+body:not(.dark) .reveal pre code {
+  background: oklch(0.204 0.012 292.958);
+}
+body:not(.dark) .reveal pre {
+  border-color: oklch(0.317 0.041 293.909);
+}
+
+/* El QR necesita borde: su fondo blanco se pierde contra el slide claro */
+body:not(.dark) .reveal .closing .qr img {
+  border: 1px solid var(--border);
+}
+
+/* ---------------------------------------------------------------
+   Slide de tips con tarjetas
+   Las tarjetas arrancan atenuadas y se encienden una por una.
+   `custom` evita que reveal les aplique su opacity:0 por defecto,
+   así que los dos estados los define este archivo.
+   --------------------------------------------------------------- */
+.reveal .fragment.dim {
+  opacity: 0.22;
+  transition: opacity 0.45s ease;
+}
+.reveal .fragment.dim.visible {
+  opacity: 1;
+}
+
+.reveal .slides section.tips-slide {
+  height: 100%;
+  padding: 0;
+}
+.reveal .tips-slide .col {
+  position: absolute;
+  left: 72px;
+  right: 72px;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: left;
+  z-index: 2;
+}
+.reveal .tips-slide h2 {
+  font-size: 1.6em;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0 0 3.5rem;
+}
+
+.reveal .cards {
+  display: flex;
+  gap: 2rem;
+  align-items: stretch;
+}
+.reveal .card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 280px;
+  padding: 2.2rem 2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--foreground) 3%, transparent);
+}
+.reveal .card .idx {
+  font-family: var(--font-mono);
+  font-size: 0.34em;
+  letter-spacing: 0.12em;
+  color: var(--muted-foreground);
+}
+.reveal .card h3 {
+  font-size: 0.72em;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 2rem 0 0;
+}
+
+/* ---------------------------------------------------------------
+   Loop de fotos
+   Modificador de .bleed: apila las imágenes y las cruza en bucle.
+   El JS del final de index.html se adapta a cuántas haya.
+   --------------------------------------------------------------- */
+.reveal .photo-slide .bleed.loop img {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+.reveal .photo-slide .bleed.loop img.is-on {
+  opacity: 1;
+}
+
+/* Mensaje de cierre */
+.reveal .section-break h2.big {
+  font-size: 3em;
+}
+
+/* La foto de dev es vertical: este encuadre deja la cabeza dentro */
+.reveal .photo-slide .bleed img.crop-dev {
+  object-position: 50% 20%;
+}
